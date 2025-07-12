@@ -6,7 +6,7 @@ A beautiful, modern Q&A platform built with React, Node.js, and MongoDB. Feature
 
 ### User Features
 - **User Authentication**: Register, login, and secure JWT-based sessions
-- **Ask Questions**: Rich text editor for detailed questions with tags
+- **Ask Questions**: text editor for detailed questions with tags
 - **Answer Questions**: Provide helpful answers with rich formatting
 - **Voting System**: Upvote/downvote questions and answers
 - **Real-time Notifications**: Get notified of new answers and activities
@@ -20,20 +20,17 @@ A beautiful, modern Q&A platform built with React, Node.js, and MongoDB. Feature
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React** - Modern UI framework
+- **React** 
 
 ### Backend
-- **Node.js** - Server runtime
-- **Express.js** - Web framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB ODM
-- **JWT** - Authentication tokens
+- **Node.js** 
+- **Express.js** 
+- **MongoDB** 
 
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
 - **Node.js** (v14 or higher)
-- **npm** or **yarn**
 - **MongoDB** (local or Atlas)
 
 ## 👥 Admin Panel
