@@ -1,3 +1,6 @@
+// File: backend/server.js
+// THIS IS THE CORRECTED VERSION
+
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
@@ -18,6 +21,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/questions', require('./routes/questionRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/upload', require('./routes/uploadRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes')); // <-- THIS IS THE LINE YOU NEED TO ADD
 
 // Serve static files for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

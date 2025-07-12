@@ -1,5 +1,5 @@
 // File: stackit/frontend/src/context/AuthContext.js
-// THIS IS THE CORRECTED, SIMPLIFIED VERSION
+// THIS IS THE CORRECT FRONTEND CODE
 
 import React, { createContext, useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
@@ -11,17 +11,15 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [socket, setSocket] = useState(null);
 
-    // This function will run once when the app loads
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
                 const decoded = jwt_decode(token);
                 if (decoded.exp * 1000 < Date.now()) {
-                    // Token is expired, remove it
                     localStorage.removeItem('token');
                 } else {
-                    setUser({ id: decoded.id, username: decoded.username });
+                    setUser({ id: decoded.id, username: decoded.username, role: decoded.role });
                 }
             } catch (error) {
                 localStorage.removeItem('token');
@@ -29,7 +27,6 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    // This effect handles the socket connection
     useEffect(() => {
         if (user) {
             const newSocket = io('http://localhost:5001');
@@ -51,7 +48,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', token);
         try {
             const decoded = jwt_decode(token);
-            setUser({ id: decoded.id, username: decoded.username });
+            setUser({ id: decoded.id, username: decoded.username, role: decoded.role });
         } catch (error) {
             console.error("Failed to decode token on login", error);
         }
@@ -63,7 +60,6 @@ export const AuthProvider = ({ children }) => {
         if (socket) {
             socket.disconnect();
         }
-        // We will navigate from the component that calls logout
     };
 
     return (

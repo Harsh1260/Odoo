@@ -1,8 +1,7 @@
-// File: stackit/frontend/src/components/Layout/Navbar.js
-// THIS IS THE CORRECTED VERSION
+// File: frontend/src/components/Layout/Navbar.js
 
 import React, { useContext, useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // <-- IMPORT useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { NotificationContext } from '../../context/NotificationContext';
 import NotificationDropdown from './NotificationDropdown';
@@ -12,11 +11,11 @@ const Navbar = () => {
     const { notifications, unreadCount, setNotifications } = useContext(NotificationContext);
     const [showNotifications, setShowNotifications] = useState(false);
     const notificationRef = useRef(null);
-    const navigate = useNavigate(); // <-- INITIALIZE useNavigate
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout(); // Call the context logout function
-        navigate('/login'); // Navigate after logging out
+        logout();
+        navigate('/login');
     };
 
     useEffect(() => {
@@ -35,6 +34,12 @@ const Navbar = () => {
             <div className="navbar-links">
                 {user ? (
                     <>
+                        {/* --- NEW: ADMIN LINK --- */}
+                        {user.role === 'Admin' && (
+                            <Link to="/admin" className="btn">Admin</Link>
+                        )}
+                        {/* --- END NEW --- */}
+
                         <Link to="/ask" className="btn">Ask Question</Link>
                         <div className="notification-container" ref={notificationRef}>
                             <div className="notification-icon" onClick={() => setShowNotifications(!showNotifications)}>
@@ -44,7 +49,7 @@ const Navbar = () => {
                             {showNotifications && <NotificationDropdown notifications={notifications} setNotifications={setNotifications} />}
                         </div>
                         <span>Welcome, {user.username}</span>
-                        <button onClick={handleLogout} className="btn">Logout</button> {/* <-- CALL handleLogout */}
+                        <button onClick={handleLogout} className="btn">Logout</button>
                     </>
                 ) : (
                     <>

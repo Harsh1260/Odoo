@@ -1,0 +1,49 @@
+/* Styling for the Admin Dashboard */
+.admin-dashboard {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.admin-section {
+    margin-top: 20px;
+}
+
+.table-container {
+    overflow-x: auto; /* Allows table to be scrolled on small screens */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}

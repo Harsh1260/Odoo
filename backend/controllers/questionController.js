@@ -29,7 +29,10 @@ exports.getQuestionById = async (req, res) => {
     try {
         const question = await Question.findById(req.params.id)
             .populate('user', 'username')
-            .populate('answers.user', 'username');
+            .populate('answers.user', 'username')
+            // --- CHANGE: POPULATE COMMENT USER ---
+            .populate('answers.comments.user', 'username');
+
         if (question) {
             res.json(question);
         } else {

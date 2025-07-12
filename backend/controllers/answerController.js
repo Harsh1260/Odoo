@@ -64,7 +64,7 @@ exports.voteAnswer = async (req, res) => {
             }
         }
         await question.save();
-        const updatedQuestion = await Question.findById(questionId).populate('user', 'username').populate('answers.user', 'username');
+        const updatedQuestion = await Question.findById(questionId).populate('user', 'username').populate('answers.user', 'username').populate('answers.comments.user', 'username');
         res.json(updatedQuestion);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -96,9 +96,45 @@ exports.acceptAnswer = async (req, res) => {
             notifyUser(req, notification);
         }
 
-        const updatedQuestion = await Question.findById(questionId).populate('user', 'username').populate('answers.user', 'username');
+        const updatedQuestion = await Question.findById(questionId).populate('user', 'username').populate('answers.user', 'username').populate('answers.comments.user', 'username');
         res.json(updatedQuestion);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// --- NEW FUNCTION FOR ADDING COMMENTS ---
+exports.addCommentToAnswer = async (req, res) => {
+    try {
+        const { content } = req.body;
+        const { questionId, answerId } = req.params;
+        const question = await Question.findById(questionId);
+        if (!question) return res.status(404).json({ message: "Question not found" });
+
+        const answer = question.answers.id(answerId);
+        if (!answer) return res.status(404).json({ message: "Answer not found" });
+
+        const comment = { user: req.user._id, content };
+        answer.comments.push(comment);
+        await question.save();
+
+        // Create notification for the answer's author
+        if (answer.user.toString() !== req.user._id.toString()) {
+            const notification = await Notification.create({
+                user: answer.user,
+                fromUser: req.user._id,
+                type: 'NEW_COMMENT',
+                relatedQuestion: question._id,
+                message: `${req.user.username} commented on your answer.`
+            });
+            await notification.populate('fromUser', 'username');
+            notifyUser(req, notification);
+        }
+        
+        // Return the full question so the frontend can update its state
+        const updatedQuestion = await Question.findById(questionId).populate('user', 'username').populate('answers.user', 'username').populate('answers.comments.user', 'username');
+        res.status(201).json(updatedQuestion);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
     }
 };

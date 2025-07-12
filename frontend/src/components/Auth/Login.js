@@ -1,10 +1,14 @@
+// File: stackit/frontend/src/components/Auth/Login.js
+// THIS IS THE CORRECTED VERSION FOR USERNAME LOGIN
+
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../api';
 
 const Login = () => {
-    const [formData, setFormData] = useState({ email: '', password: '' });
+    // --- CHANGE: USE USERNAME IN STATE ---
+    const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -30,8 +34,9 @@ const Login = () => {
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" onChange={handleChange} required />
+                    {/* --- CHANGE: LABEL AND INPUT --- */}
+                    <label>Username</label>
+                    <input type="text" name="username" onChange={handleChange} required />
                 </div>
                 <div className="form-group">
                     <label>Password</label>

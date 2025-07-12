@@ -1,5 +1,4 @@
-// File: stackit/frontend/src/App.js
-// THIS IS THE CORRECTED VERSION
+// File: frontend/src/App.js
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -11,8 +10,12 @@ import AskQuestionPage from './pages/AskQuestionPage';
 import QuestionDetailPage from './pages/QuestionDetailPage';
 import './App.css';
 
+// --- NEW: IMPORTS FOR ADMIN ---
+import AdminPage from './pages/AdminPage';
+import AdminRoute from './components/Common/AdminRoute';
+// --- END NEW ---
+
 function App() {
-  // The <Router> component has been removed from here
   return (
     <>
       <Navbar />
@@ -23,6 +26,12 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/ask" element={<AskQuestionPage />} />
           <Route path="/questions/:id" element={<QuestionDetailPage />} />
+
+          {/* --- NEW: ADMIN ROUTE --- */}
+          <Route path='/admin' element={<AdminRoute />}>
+            <Route path='' element={<AdminPage />} />
+          </Route>
+          {/* --- END NEW --- */}
         </Routes>
       </main>
     </>
