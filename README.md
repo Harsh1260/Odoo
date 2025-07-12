@@ -44,22 +44,8 @@ Before you begin, ensure you have the following installed:
 3. Navigate through the dashboard
 
 ### Admin Features
-- **Dashboard**: Platform statistics and recent activity
 - **Questions**: Search, review, and delete questions/answers
-- **Users**: Manage user accounts and roles
-
-### Create Admin User
-```bash
-# Run the setup script
-cd backend
-npm run setup
-
-# Or manually update user role in MongoDB
-db.users.updateOne(
-  { email: "user@example.com" },
-  { $set: { role: "Admin" } }
-)
-```
+- **Users**: Manage user accounts
 
 ## 🔒 Security Features
 
