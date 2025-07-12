@@ -21,11 +21,6 @@ A beautiful, modern Q&A platform built with React, Node.js, and MongoDB. Feature
 
 ### Frontend
 - **React** - Modern UI framework
-- **React Router** - Client-side routing
-- **Axios** - HTTP client for API calls
-- **React Quill** - Rich text editor
-- **Socket.io Client** - Real-time notifications
-- **DOMPurify** - XSS protection
 
 ### Backend
 - **Node.js** - Server runtime
@@ -33,9 +28,6 @@ A beautiful, modern Q&A platform built with React, Node.js, and MongoDB. Feature
 - **MongoDB** - NoSQL database
 - **Mongoose** - MongoDB ODM
 - **JWT** - Authentication tokens
-- **bcryptjs** - Password hashing
-- **Socket.io** - Real-time communication
-- **Multer** - File upload handling
 
 ## 📋 Prerequisites
 
@@ -43,38 +35,6 @@ Before you begin, ensure you have the following installed:
 - **Node.js** (v14 or higher)
 - **npm** or **yarn**
 - **MongoDB** (local or Atlas)
-
-
-## 🔧 Configuration
-
-### Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/stackit` |
-| `JWT_SECRET` | Secret key for JWT tokens | Required |
-| `PORT` | Server port | `5001` |
-| `NODE_ENV` | Environment mode | `development` |
-
-### MongoDB Atlas Setup
-
-1. **Create Cluster**:
-   - Go to MongoDB Atlas
-   - Create a free cluster
-   - Choose your preferred cloud provider and region
-
-2. **Database Access**:
-   - Create a database user with read/write permissions
-   - Remember username and password
-
-3. **Network Access**:
-   - Add your IP address to the whitelist
-   - Or allow access from anywhere (0.0.0.0/0) for development
-
-4. **Connection String**:
-   ```
-   mongodb+srv://username:password@cluster.mongodb.net/stackit?retryWrites=true&w=majority
-   ```
 
 ## 👥 Admin Panel
 
@@ -107,18 +67,7 @@ db.users.updateOne(
 - **Role-based Access**: Admin middleware protection
 - **Input Validation**: Server-side validation
 
-## 🚀 Deployment
 
-### Backend Deployment
-1. Set up a MongoDB Atlas cluster
-2. Deploy to platforms like Heroku, Railway, or DigitalOcean
-3. Set environment variables in your hosting platform
-4. Update CORS settings for your domain
-
-### Frontend Deployment
-1. Build the production version: `npm run build`
-2. Deploy to platforms like Vercel, Netlify, or GitHub Pages
-3. Update API base URL in production
 
 
 
